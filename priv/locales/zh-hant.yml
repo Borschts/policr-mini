@@ -1,0 +1,123 @@
+start:
+  response: 訪問[這裡](https://github.com/Hentioe/policr-mini)了解了解我吧～
+
+self_joined:
+  text: |
+    已成功登記本群訊息，所有管理員皆可登入後台。
+
+    功能啟用方法：
+    1. 將本機器人提升為管理員
+    2. 發送 /sync@%{bot_username} 指令
+
+    為了避免誤解，附加一些有關用戶自行測試的說明：當退群重進的用戶身份是群主時是不會產生驗證的，請使用小號或拜託其他人測試。
+  markup_text:
+    subscribe: 訂閱更新
+  error: 出現了一些問題，群組登記失敗。請聯絡作者。
+
+sync:
+  success: 同步完成。已更新群組和管理員數據。
+  have_permissions: 因為本機器人具備權限，
+  already_takeover: 新成員驗證已處於接管狀態。
+  has_takeover: 已接管新成員驗證。
+  no_permission: 因為本機器人不是管理員，
+  cancelled_takeover: 已取消對新成員驗證的接管。
+  unable_takeover: 沒有接管新成員驗證的能力。
+
+verification:
+  unity:
+    single_waiting: |
+      新成員 %{mentioned_user} 你好！
+
+      您當前需要完成驗證才能解除限制，驗證有效時間不超過 __%{seconds}__ 秒。
+      過期會被踢出或封禁，請儘快。
+    multiple_waiting: |
+      剛來的 %{mentioned_user} 和另外 %{remaining_count} 個還未驗證的新成員，你們好！
+
+      請主動完成驗證以解除限制，驗證有效時間不超過 __%{seconds}__ 秒。
+      過期會被踢出或封禁，請儘快。
+  template: |
+    請確認問題並選擇您認為正確的答案：
+
+    *%{question}*
+
+    您還剩 %{seconds} 秒，通過可解除封印。
+  template_issue_33: |
+    _來自『*%{chat_name}*』的驗證，請確認問題並選擇您認為正確的答案。_
+
+    *%{question}*
+
+    您還剩 __%{seconds}__ 秒，通過可解除封印。
+  passed:
+    private: 恭喜您，驗證通過。如果限制仍未解除請聯絡管理員。
+    notice: 剛剛 %{mentioned_user} 通過了驗證，用時 %{seconds} 秒。
+  wronged:
+    kick:
+      private: 抱歉，驗證錯誤。您已被移出群組，稍後可嘗試重新加入。
+      notice: |
+        剛剛 %{mentioned_user} 驗證錯誤，已經移出本群。
+
+        過 %{time_text}後可再次嘗試加入。
+  timeout:
+    kick:
+      notice: |
+        剛剛 %{mentioned_user} 超時未驗證，已經移出本群。
+
+        過 %{time_text}後可再次嘗試加入。
+
+buttons:
+  verification:
+    click_here: 點此驗證
+
+errors:
+  dont_understand: 很抱歉，我未能理解您的意圖。
+  unknown: 發生了一些未預料的情況，請向開發者回饋。
+  sync_failed: 出現了一些問題，同步失敗。請聯絡開發者。
+  scheme_fetch_failed: 發生了一些錯誤，沒有讀取到本群的驗證方案。如果重複出現此問題，請取消機器人的接管狀態並通知作者。
+  verification_created_failed: |
+    發生了一些錯誤，針對 %{mentioned_user} 的驗證創建失敗。建議管理員自行鑑別再決定取消限制或手動封禁。
+
+    如果反覆出現此問題，請取消接管狀態並通知作者。
+  check_answer_failed: 出現了一些未意料的錯誤，校驗驗證時失敗。請管理員並通知作者。
+  verification_not_found: 沒有找到和這條驗證有關的紀錄哦～
+  verification_target_incorrect: 此條驗證並不針對你～
+  verification_expired: 這條驗證可能已經失效了～
+  verification_no_wating: 您沒有該目標群組的待驗證記錄。
+  no_permission: |
+    由於機器人缺少必要權限，已自動取消對新成員驗證的接管。
+
+    如果需要恢復接管：
+    1. 將機器人提升為管理員，並確保至少具備「限制用戶」和「刪除消息」權限。
+    2. 發送 /sync@%{bot_username} 指令。
+
+    如沒必要，請將本機器人移出群組。
+  no_super_group: |
+    請在超級群中使用本機器人。如果您不清楚普通群、超級群這些概念，請嘗試為本群創建公開連結。*提示*：創建公開連結後再轉私有的群仍然是超級群。
+
+    在您將本群提升為超級群以後，可再次添加本機器人。如果您正在實施測試，請在測試完成後將本機器人移出群組。
+
+units:
+  sec: 秒
+  min: 分鐘
+
+login:
+  success: |
+    已為您創建一枚令牌，點擊下方連結可直接進入後台。亦或複製令牌手動登入。
+
+    `%{token}`
+
+    有效期為 1 天，過期需重新申請和登入。如懷疑洩漏請立即吊銷。
+  non_admin: |
+    _未找到和您相關的權限記錄_
+
+    如果您確定自己是群管理員，且群組中的確使用了本機器人。請通知群主或其它管理員在群內使用 `/sync` 命令同步最新數據。
+  not_found: |
+    _未找到和您相關的用戶記錄_
+
+    如果您確定自己是群管理員，且群組中的確使用了本機器人。請通知群主或其它管理員在群內使用 `/sync` 命令同步最新數據。
+  join_text: 進入後台
+  revoke_text: 吊銷全部令牌
+  only_private: 請在私聊中使用此命令。
+
+revoke:
+  success: 已成功吊銷自 `%{datetime}` 之前的全部令牌。
+  failed: 出於某些原因吊銷操作未實際執行，請嘗試聯繫社區群尋求幫助。
